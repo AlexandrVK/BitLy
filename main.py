@@ -41,7 +41,8 @@ if __name__ == '__main__':
     load_dotenv()
     token = os.environ['BITLY_TOKEN']
     
-        parser = argparse.ArgumentParser(
+    
+    parser = argparse.ArgumentParser(
         description='Прорамма обработки ссылок для сайта Bit.ly'
     )
     parser.add_argument('user_input', help='Введите ссылку:')
