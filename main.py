@@ -27,8 +27,8 @@ def count_clicks(token, user_input):
 
 
 def is_bitlink(token, user_input):
-    parsed = urlparse(user_input)
-    parsed_user_input = parsed.path if not parsed.netloc else f"{parsed.netloc}{parsed.path}"
+    temp_parsed_user_input = urlparse(user_input)
+    parsed_user_input = temp_parsed_user_input.path if not temp_parsed_user_input.netloc else f"{temp_parsed_user_input.netloc}{temp_parsed_user_input.path}"
     url = f"https://api-ssl.bitly.com/v4/bitlinks/{parsed_user_input}"
     header = {"Authorization": f"Bearer {token}"}
     response = requests.get(url, headers = header)
@@ -50,8 +50,8 @@ if __name__ == '__main__':
         
     try:
         if is_bitlink(token, args.user_input):
-            parsed = urlparse(args.user_input)
-            bitlink = parsed.path if not parsed.netloc else f"{parsed.netloc}{parsed.path}"
+            temp_parsed_user_input = urlparse(args.user_input)
+            bitlink = temp_parsed_user_input.path if not temp_parsed_user_input.netloc else f"{temp_parsed_user_input.netloc}{temp_parsed_user_input.path}"
             click_sum = count_clicks(token,bitlink)
             print(f"По вашей ссылке прошли {click_sum} раз(а)")
         else:  
