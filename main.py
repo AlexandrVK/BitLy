@@ -47,17 +47,15 @@ if __name__ == '__main__':
     )
     parser.add_argument('user_input', help='Введите ссылку:')
     args = parser.parse_args()
-    user_input =args.user_input
-
-    
+        
     try:
-        if is_bitlink(token, user_input):
-            parsed = urlparse(user_input)
+        if is_bitlink(token, args.user_input):
+            parsed = urlparse(args.user_input)
             bitlink = parsed.path if not parsed.netloc else f"{parsed.netloc}{parsed.path}"
             click_sum = count_clicks(token,bitlink)
             print(f"По вашей ссылке прошли {click_sum} раз(а)")
         else:  
-            bitlink = shorten_link(token, user_input)
+            bitlink = shorten_link(token, args.user_input)
             print('Битлинк:', bitlink)
         
     except requests.exceptions.HTTPError:
