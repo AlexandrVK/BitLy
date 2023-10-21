@@ -38,7 +38,7 @@ $ python bitly.py https://bit.ly/3G07aH3
 ```
 pip install -r requirements.txt
 ```
-5. Создайте файл .env в том же каталоге и добавьте свой токен API Bit.ly в файл следующим образом: 
+5. Создайте файл .env в том же каталоге и добавьте свой токен API Bit.ly (токен брать по ссылке: [Токен](https://app.bitly.com/settings/api/) ) в файл следующим образом: 
 ```
 BITLY_TOKEN=<ваш_токен_здесь>`
 ```

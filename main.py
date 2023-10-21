@@ -2,7 +2,6 @@ import requests
 import os
 from urllib.parse import urlparse
 from dotenv import load_dotenv
-import argparse
 
 
 def shorten_link(token, user_input):
@@ -41,20 +40,17 @@ if __name__ == '__main__':
     load_dotenv()
     token = os.environ['BITLY_TOKEN']
 
-    parser = argparse.ArgumentParser(
-        description='Прорамма обработки ссылок для сайта Bit.ly'
-    )
-    parser.add_argument('user_input', help='Введите ссылку:')
-    args = parser.parse_args()
+    user_input = input('Введите ссылку:')
+
 
     try:
-        if is_bitlink(token, args.user_input):
-            parsed_url = urlparse(args.user_input)
+        if is_bitlink(token, user_input):
+            parsed_url = urlparse(user_input)
             bitlink = parsed_url.path if not parsed_url.netloc else f"{parsed_url.netloc}{parsed_url.path}"
             click_sum = count_clicks(token, bitlink)
             print(f"По вашей ссылке прошли {click_sum} раз(а)")
         else:
-            bitlink = shorten_link(token, args.user_input)
+            bitlink = shorten_link(token, user_input)
             print('Битлинк:', bitlink)
 
     except requests.exceptions.HTTPError:
